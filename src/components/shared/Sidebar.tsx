@@ -6,7 +6,7 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div className="w-[97px] h-dvh py-8 bg-white flex flex-col items-center justify-between border-r">
+    <div className="w-[97px] h-dvh py-8 bg-white flex flex-col items-center justify-between max-[940px]:hidden">
       <Logo />
       <Menu />
       <Profile />
