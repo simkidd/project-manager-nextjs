@@ -1,6 +1,7 @@
 import React from "react";
 import TasksHeader from "./TasksHeader";
 import TasksSubHeader from "./TasksSubHeader";
+import TasksList from "./TasksList";
 
 const AllTasks = () => {
   return (
@@ -8,7 +9,7 @@ const AllTasks = () => {
       <div className="w-full p-10 flex flex-col gap-3">
         <TasksHeader />
         <TasksSubHeader />
-        {/* <AllProjectsSection /> */}
+        <TasksList />
       </div>
 
       {/* <StatsRightSidebar /> */}
