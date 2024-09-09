@@ -38,7 +38,7 @@ export default Sidebar;
 
 const Profile = () => {
   const {
-    openSideBarProps: { openSideBar, setOpenSideBar },
+    openSideBarProps: { openSideBar },
   } = useAppContext();
 
   return (
