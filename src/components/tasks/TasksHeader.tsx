@@ -1,3 +1,6 @@
+"use client";
+
+import { useAppContext } from "@/contexts/AppContext";
 import { Add, Menu, Search } from "@mui/icons-material";
 import React from "react";
 
@@ -33,6 +36,10 @@ const SearchBar = () => {
 };
 
 const AddProjectButton = () => {
+  const {
+    openSideBarProps: { openSideBar, setOpenSideBar },
+  } = useAppContext();
+
   return (
     <div className="flex gap-3 items-center">
       <button className="bg-orange-600 text-white px-2 pr-3 text-sm rounded-md flex gap-1 items-center p-2 max-sm:pr-2">
@@ -40,7 +47,10 @@ const AddProjectButton = () => {
         <span className="max-sm:hidden">New Task</span>
       </button>
 
-      <Menu className="text-slate-400 h-9 cursor-pointer hidden max-[940px]:block" />
+      <Menu
+        className="text-slate-400 h-9 cursor-pointer hidden max-[940px]:block"
+        onClick={() => setOpenSideBar(!openSideBar)}
+      />
     </div>
   );
 };
