@@ -9,9 +9,12 @@ import { Checkbox } from "@mui/material";
 
 const TasksList = () => {
   return (
-    <div className="ml-12 max-sm:ml-0 mt-11 flex flex-col gap-4">
+    <div className="ml-12 max-sm:ml-0 mt-11 flex flex-col gap-4 ">
       <Tabs />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 ">
+        <SingleTask />
+        <SingleTask />
+        <SingleTask />
         <SingleTask />
         <SingleTask />
         <SingleTask />

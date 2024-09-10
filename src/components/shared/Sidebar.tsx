@@ -14,17 +14,15 @@ const Sidebar = () => {
     <>
       {openSideBar && (
         <div
-          className="w-full h-screen z-50 bg-slate-800 fixed opacity-50"
+          className="w-full h-screen z-50 bg-slate-800 fixed opacity-30"
           onClick={() => setOpenSideBar(false)}
         ></div>
       )}
 
       <div
         className={`${
-          openSideBar
-            ? "w-[240px] fixed shadow-xl"
-            : "w-[97px] max-[940px]:hidden"
-        } h-dvh py-8 bg-white flex flex-col items-center justify-between z-[90] transition-all `}
+          openSideBar ? "w-[240px] shadow-xl" : "w-[97px] max-[940px]:hidden"
+        } fixed h-dvh py-8 bg-white flex flex-col items-center justify-between z-[90] transition-all `}
       >
         <Logo />
         <Menu />

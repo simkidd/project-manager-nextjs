@@ -1,9 +1,9 @@
-import { LibraryBooks } from "@mui/icons-material";
-import React, { FormEvent } from "react";
+import React from "react";
 import Button from "../ui/Button";
+import { LibraryBooks } from "@mui/icons-material";
 
-const AddTaskForm = () => {
-  const onSubmit = (e: FormEvent) => {
+const AddProjectForm = () => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
 
@@ -13,7 +13,7 @@ const AddTaskForm = () => {
         <div className="w-full">
           <input
             type="text"
-            placeholder="Enter Task Name..."
+            placeholder="Enter Project Name..."
             className="p-[10px] text-[13px] w-full rounded-md border outline-none"
           />
         </div>
@@ -28,4 +28,4 @@ const AddTaskForm = () => {
   );
 };
 
-export default AddTaskForm;
+export default AddProjectForm;

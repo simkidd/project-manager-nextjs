@@ -31,9 +31,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className="flex w-full h-dvh bg-slate-50">
+          <div className="flex w-full min-h-dvh bg-slate-50">
             <Sidebar />
-            {children}
+            <div className="pl-[97px] w-full max-[940px]:pl-0">{children}</div>
           </div>
         </body>
       </AppProvider>
