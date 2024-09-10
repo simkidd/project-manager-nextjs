@@ -1,16 +1,26 @@
 "use client";
 
 import { useAppContext } from "@/contexts/AppContext";
-import { Add, BorderAll, Menu, Search } from "@mui/icons-material";
+import { Add, BorderAll, Menu, Search, Splitscreen } from "@mui/icons-material";
 import React from "react";
 import Modal from "../ui/Modal";
 import Button from "../ui/Button";
 import AddTaskForm from "./AddTaskForm";
 
 const TasksHeader = () => {
+  const {
+    openSideBarProps: { openSideBar, setOpenSideBar },
+  } = useAppContext();
+
   return (
     <div className="flex justify-between">
-      <SearchBar />
+      <div className="flex gap-3 items-center">
+        <Menu
+          className="text-slate-400 h-9 cursor-pointer hidden max-[940px]:block"
+          onClick={() => setOpenSideBar(!openSideBar)}
+        />
+        <SearchBar />
+      </div>
       <AddProjectButton />
     </div>
   );
@@ -40,7 +50,6 @@ const SearchBar = () => {
 
 const AddProjectButton = () => {
   const {
-    openSideBarProps: { openSideBar, setOpenSideBar },
     openModalProps: { openModal, setOpenModal },
   } = useAppContext();
 
@@ -53,11 +62,6 @@ const AddProjectButton = () => {
         >
           New Task
         </Button>
-
-        <Menu
-          className="text-slate-400 h-9 cursor-pointer hidden max-[940px]:block"
-          onClick={() => setOpenSideBar(!openSideBar)}
-        />
       </div>
 
       <Modal
@@ -65,7 +69,7 @@ const AddProjectButton = () => {
         title={
           <div className="flex items-center gap-2">
             <div className="p-[7px] bg-orange-200 rounded-lg flex items-center justify-center">
-              <BorderAll
+              <Splitscreen
                 className="text-orange-600"
                 sx={{ fontSize: "22px" }}
               />
@@ -84,7 +88,9 @@ const AddProjectButton = () => {
             >
               Cancel
             </Button>
-            <Button className="px-4">Add Project</Button>
+            <Button className="px-4" type="submit">
+              Add Task
+            </Button>
           </>
         }
       >

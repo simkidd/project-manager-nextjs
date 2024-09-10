@@ -11,8 +11,6 @@ const AllTasks = () => {
         <TasksSubHeader />
         <TasksList />
       </div>
-
-      {/* <StatsRightSidebar /> */}
     </div>
   );
 };

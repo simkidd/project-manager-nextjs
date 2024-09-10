@@ -1,12 +1,25 @@
-"use client"
+"use client";
 import { useAppContext } from "@/contexts/AppContext";
-import { Add, Menu, Search } from "@mui/icons-material";
+import { Add, BorderAll, Menu, Search } from "@mui/icons-material";
 import React from "react";
+import Modal from "../ui/Modal";
+import Button from "../ui/Button";
+import AddProjectForm from "./AddProjectForm";
 
 const ProjectsHeader = () => {
+  const {
+    openSideBarProps: { openSideBar, setOpenSideBar },
+  } = useAppContext();
+
   return (
     <div className="flex justify-between">
-      <SearchBar />
+      <div className="flex gap-3 items-center">
+        <Menu
+          className="text-slate-400 h-9 cursor-pointer hidden max-[940px]:block"
+          onClick={() => setOpenSideBar(!openSideBar)}
+        />
+        <SearchBar />
+      </div>
       <AddProjectButton />
     </div>
   );
@@ -36,20 +49,52 @@ const SearchBar = () => {
 
 const AddProjectButton = () => {
   const {
-    openSideBarProps: { openSideBar, setOpenSideBar },
+    openModalProps: { openModal, setOpenModal },
   } = useAppContext();
 
   return (
-    <div className="flex gap-3 items-center">
-      <button className="bg-orange-600 text-white px-2 pr-3 text-sm rounded-md flex gap-1 items-center p-2 max-sm:pr-2">
-        <Add className="mt-[2px]" sx={{ fontSize: "22px" }} />
-        <span className="max-sm:hidden">New Project</span>
-      </button>
+    <>
+      <div className="flex gap-3 items-center">
+        <Button
+          icon={<Add className="mt-[2px]" sx={{ fontSize: "22px" }} />}
+          onClick={() => setOpenModal(true)}
+        >
+          New Project
+        </Button>
+      </div>
 
-      <Menu
-        className="text-slate-400 h-9 cursor-pointer hidden max-[940px]:block"
-        onClick={() => setOpenSideBar(!openSideBar)}
-      />
-    </div>
+      <Modal
+        isopen={openModal}
+        title={
+          <div className="flex items-center gap-2">
+            <div className="p-[7px] bg-orange-200 rounded-lg flex items-center justify-center">
+              <BorderAll
+                className="text-orange-600"
+                sx={{ fontSize: "22px" }}
+              />
+            </div>
+            <span className="font-semibold text-lg">Add Project</span>
+          </div>
+        }
+        onClose={() => setOpenModal(false)}
+        bodyClass="px-4"
+        footer={
+          <>
+            <Button
+              variant="default"
+              className="px-4"
+              onClick={() => setOpenModal(false)}
+            >
+              Cancel
+            </Button>
+            <Button className="px-4" type="submit">
+              Add Project
+            </Button>
+          </>
+        }
+      >
+        <AddProjectForm />
+      </Modal>
+    </>
   );
 };

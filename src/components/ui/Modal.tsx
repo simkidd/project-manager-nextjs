@@ -10,6 +10,7 @@ export interface ModalProps {
   footerClass?: string;
   bodyClass?: string;
   isopen: boolean;
+  overlay?: boolean;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -21,24 +22,31 @@ const Modal: React.FC<ModalProps> = ({
   closable = true,
   isopen,
   onClose,
+  overlay = true,
 }) => {
   return (
-    <div
-      className={`${
-        isopen ? "block" : "hidden"
-      } w-[40%] max-sm:w-[82%] max-[600px]:w-[93%] z-[80] p-3 left-1/2 top-[47%] -translate-y-1/2 -translate-x-1/2 absolute flex flex-col gap-3 border border-slate-50 bg-white rounded-lg shadow-md`}
-    >
-      <Header title={title} onClose={onClose} closable={closable} />
-      <div className={`${bodyClass}`}>{children}</div>
-
-      {footer && (
-        <div
-          className={`w-full p-3 flex items-center justify-end gap-3 ${footerClass}`}
-        >
-          {footer}
-        </div>
+    <>
+      {isopen && overlay && (
+        <div className="w-full h-screen z-[90] bg-slate-800 absolute top-0 left-0 opacity-30"></div>
       )}
-    </div>
+
+      <div
+        className={`${
+          isopen ? "block" : "hidden"
+        } w-[40%] max-sm:w-[82%] max-[600px]:w-[93%] z-[100] p-3 left-1/2 top-[47%] -translate-y-1/2 -translate-x-1/2 absolute flex flex-col gap-3 border border-slate-50 bg-white rounded-lg shadow-md`}
+      >
+        <Header title={title} onClose={onClose} closable={closable} />
+        <div className={`${bodyClass} py-7`}>{children}</div>
+
+        {footer && (
+          <div
+            className={`w-full p-3 flex items-center justify-end gap-3 ${footerClass}`}
+          >
+            {footer}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
@@ -56,7 +64,7 @@ const Header: React.FC<{
   };
 
   return (
-    <div className="flex justify-between items-center py-2 px-2">
+    <div className="flex justify-between items-start py-1 px-2">
       <div className="flex items-center gap-2">
         {typeof title === "string" ? (
           <span className="font-semibold text-lg">{title}</span>
