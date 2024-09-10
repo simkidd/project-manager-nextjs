@@ -44,7 +44,7 @@ const Tabs = () => {
 const SingleTask = () => {
   return (
     <div className="flex gap-2 items-center">
-      <Checkbox />
+      <Checkbox  />
       <div className="w-full bg-white rounded-lg border border-slate-100 flex gap-3 items-center justify-between p-5 py-6 max-sm:p-4">
         <div className="flex gap-3 items-center">
           <div>

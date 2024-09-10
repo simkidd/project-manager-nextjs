@@ -56,7 +56,7 @@ const Profile = () => {
 
 const Menu = () => {
   const {
-    openSideBarProps: { openSideBar },
+    openSideBarProps: { openSideBar, setOpenSideBar },
   } = useAppContext();
   const pathname = usePathname();
 
@@ -64,22 +64,44 @@ const Menu = () => {
 
   return (
     <div className="flex flex-col gap-6">
-      <Link href="/" className="flex items-center gap-2">
+      <Link
+        href="/"
+        className="flex items-center gap-2"
+        onClick={() => setOpenSideBar(false)}
+      >
         <BorderAll
           sx={{ fontSize: "27px" }}
           className={`text-slate-300 ${isActive("/") && "!text-orange-600"}`}
         />
-        {openSideBar && <span className="text-slate-400">Projects</span>}
+        {openSideBar && (
+          <span
+            className={`text-slate-400 ${isActive("/") && "!text-orange-600"}`}
+          >
+            Projects
+          </span>
+        )}
       </Link>
 
-      <Link href="/tasks" className="flex items-center gap-2">
+      <Link
+        href="/tasks"
+        className="flex items-center gap-2"
+        onClick={() => setOpenSideBar(false)}
+      >
         <Splitscreen
           sx={{ fontSize: "27px" }}
           className={`text-slate-300 ${
             isActive("/tasks") && "!text-orange-600"
           }`}
         />
-        {openSideBar && <span className="text-slate-400">Tasks</span>}
+        {openSideBar && (
+          <span
+            className={`text-slate-400 ${
+              isActive("/tasks") && "!text-orange-600"
+            }`}
+          >
+            Tasks
+          </span>
+        )}
       </Link>
 
       <div className="flex items-center gap-2">

@@ -1,11 +1,15 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type AppType = {
   openSideBarProps: {
     openSideBar: boolean;
     setOpenSideBar: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+  openModalProps: {
+    openModal: boolean;
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   };
 };
 
@@ -13,6 +17,10 @@ const initialState: AppType = {
   openSideBarProps: {
     openSideBar: false,
     setOpenSideBar: () => {},
+  },
+  openModalProps: {
+    openModal: false,
+    setOpenModal: () => {},
   },
 };
 
@@ -23,6 +31,7 @@ const AppContext = createContext<AppType>(initialState);
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [openSideBar, setOpenSideBar] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
 
   // update the window size
   useEffect(() => {
@@ -48,7 +57,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppContext.Provider
-      value={{ openSideBarProps: { openSideBar, setOpenSideBar } }}
+      value={{
+        openSideBarProps: { openSideBar, setOpenSideBar },
+        openModalProps: { openModal, setOpenModal },
+      }}
     >
       {children}
     </AppContext.Provider>
