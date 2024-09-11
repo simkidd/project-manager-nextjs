@@ -38,10 +38,10 @@ const AddProjectForm = () => {
     reset();
   };
 
-  const handleClose = () => {
-    setOpenModal(false);
-    reset();
-  };
+  // const handleClose = () => {
+  //   setOpenModal(false);
+  //   reset();
+  // };
 
   return (
     <>
