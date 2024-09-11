@@ -1,17 +1,8 @@
 "use client";
 
+import { allIconsArray } from "@/components/shared/AllIcons";
+import { AppType, IconData } from "@/interfaces/app.interface";
 import React, { createContext, useContext, useEffect, useState } from "react";
-
-type AppType = {
-  openSideBarProps: {
-    openSideBar: boolean;
-    setOpenSideBar: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-  openModalProps: {
-    openModal: boolean;
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-};
 
 const initialState: AppType = {
   openSideBarProps: {
@@ -21,6 +12,18 @@ const initialState: AppType = {
   openModalProps: {
     openModal: false,
     setOpenModal: () => {},
+  },
+  openIconModalProps: {
+    openIconModal: false,
+    setOpenIconModal: () => {},
+  },
+  allIconsDataProps: {
+    allIconsData: allIconsArray,
+    setAllIconsData: () => {},
+  },
+  selectedIconProps: {
+    selectedIcon: null,
+    setSelectedIcon: () => {},
   },
 };
 
@@ -32,7 +35,12 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [openSideBar, setOpenSideBar] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [openModal, setOpenModal] = React.useState(false);
+  const [openIconModal, setOpenIconModal] = React.useState(false);
+  const [allIconsData, setAllIconsData] =
+    React.useState<IconData[]>(allIconsArray);
+  const [selectedIcon, setSelectedIcon] = useState<IconData | null>(null);
 
+  console.log("icon selection>>>", selectedIcon);
   // update the window size
   useEffect(() => {
     const handleResize = () => {
@@ -60,6 +68,9 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         openSideBarProps: { openSideBar, setOpenSideBar },
         openModalProps: { openModal, setOpenModal },
+        openIconModalProps: { openIconModal, setOpenIconModal },
+        allIconsDataProps: { allIconsData, setAllIconsData },
+        selectedIconProps: { selectedIcon, setSelectedIcon },
       }}
     >
       {children}

@@ -50,6 +50,7 @@ const SearchBar = () => {
 const AddProjectButton = () => {
   const {
     openModalProps: { openModal, setOpenModal },
+    selectedIconProps: { setSelectedIcon },
   } = useAppContext();
 
   return (
@@ -76,14 +77,21 @@ const AddProjectButton = () => {
             <span className="font-semibold text-lg">Add Project</span>
           </div>
         }
-        onClose={() => setOpenModal(false)}
-        bodyClass="px-4"
+        onClose={() => {
+          setOpenModal(false);
+          setSelectedIcon(null);
+        }}
+        bodyClass="px-4 relative"
         footer={
           <>
             <Button
               variant="default"
               className="px-4"
-              onClick={() => setOpenModal(false)}
+              type="button"
+              onClick={() => {
+                setOpenModal(false);
+                setSelectedIcon(null);
+              }}
             >
               Cancel
             </Button>

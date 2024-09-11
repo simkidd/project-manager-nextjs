@@ -33,7 +33,7 @@ const Modal: React.FC<ModalProps> = ({
       <div
         className={`${
           isopen ? "block" : "hidden"
-        } w-[40%] max-sm:w-[82%] max-[600px]:w-[93%] z-[100] p-3 left-1/2 top-[47%] -translate-y-1/2 -translate-x-1/2 absolute flex flex-col gap-3 border border-slate-50 bg-white rounded-lg shadow-md`}
+        } w-[40%] max-sm:w-[82%] max-[600px]:w-[93%] max-[900px]:w-[65%] z-[100] p-3 left-1/2 top-[47%] -translate-y-1/2 -translate-x-1/2 absolute flex flex-col gap-3 border border-slate-50 bg-white rounded-lg shadow-md`}
       >
         <Header title={title} onClose={onClose} closable={closable} />
         <div className={`${bodyClass} py-7`}>{children}</div>
